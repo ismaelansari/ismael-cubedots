@@ -1,3 +1,6 @@
+@php
+    $role = getRole();
+@endphp
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -27,6 +30,17 @@
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Roles') }}" />                
+                <select name="roles" class="block mt-1 w-full">
+                    @foreach($role as $r)
+                        <option value="{{$r->id}}">
+                            {{$r->name}}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

@@ -17,6 +17,7 @@ class CreateModulesTable extends Migration
             $table->id();
             $table->string('module_name');
             $table->tinyInteger('is_status')->default('0');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
